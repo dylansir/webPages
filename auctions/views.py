@@ -93,7 +93,7 @@ def submitListing(request, ):
                 count = Listings.objects.all().count() + 1
 
 
-                
+                 
                 Name = request.POST[f'{a[0]}']
 
                 
@@ -129,12 +129,12 @@ def login_view(request):
 
     if request.method == "POST":
 
-        # Attempt to sign user in
+
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
 
-        # Check if authentication successful
+
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
@@ -156,7 +156,7 @@ def register(request):
         username = request.POST["username"]
         email = request.POST["email"]
 
-        # Ensure password matches confirmation
+
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
@@ -164,7 +164,7 @@ def register(request):
                 "message": "Passwords must match."
             })
 
-        # Attempt to create new user
+
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
@@ -183,14 +183,12 @@ def watchlist(request):
 
 def bidPlace(request):
 
-    #not sure if I need to check who's logged in to place a bid. Need to figure out
-    # if whoever does the bid, they will have to be accounted for. Either within their
-    #own DB or both, as a reference ForeignKey within the Listing DB.
+
 
     if request.method=="POST":
 
 
-        ## future reference, it seems that DJANGO MODELS use the same id's for things that reference each other.
+
         listingid = request.POST["listing_id"]
         bidId = request.POST["bid_id"]
 
@@ -233,13 +231,12 @@ def viewListing(request):
     #Listings_id = request.POST["name"]
     #listingName = Listings.objects.filter(id=Listings_id)
 
-    #For future reference, not sure if I need to check if its a post method, if this is literally all that the page is doing.
     if request.method=="POST":
 
         Listings_id = request.POST["name"]
         listingName = Listings.objects.filter(id=Listings_id)
 
-    ## need to get the value of the post that we are viewing with the POST.
+
     return render(request, "auctions/viewListings.html", {
             "wholeListing":listingName,
     })
@@ -253,7 +250,7 @@ def watchlist(request):
         try:
             
             ##I know i have made a lot of boilerplate code here, but I just watned to be safe for now :P
-            ## THis could have been 2 lines of code insead of 3.
+
             current_user = request.user
             user_to_split=re.split("\s", str(request.user), 1)
 
