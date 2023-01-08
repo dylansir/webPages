@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+    
+
+        <div class="listingzOne">  
+            {% for items in wholeListing %}
+                <div class="listingBoxOne">
+                    <p id="listingName">{{ items.Name }}</p>
+                    {%if items.Image != 'No_Image'%}<img src="{{items.Image}}" width="auto" height="250"></img>
+                    {%else%}<img src="https://qph.cf2.quoracdn.net/main-qimg-1ade612a59f8249fd48849d3b3cdfd98.webp" width="auto" height="250"></img> 
+                    {%endif%}
+                    <p id ="listingDescOne">{{ items.Description }}</p>
+                    <p id ="listingCatOne">Category: {{ items.Categories }}</p>
+                    <p id="listingSellerOne">Seller: {{items.User}}</p>
+                    <!--Might have to do a for loop for the bids.-->
+                    <p id="bidHistory">Current bid: {{items.Bids.currentBid}}</p>
+                    <form method="POST" action="{% url 'bidPlace' %}">
+                        {% csrf_token %}
+                        <input type="text" name="Bid" id="labelz" title="startingBid" size="5" placeholder="50" required="">
+                        <input type="hidden" name="listing_id" value="{{items.id}}">
+                        <input type="hidden" name="bid_id" value="{{items.Bids_id}}">
+                        <input type="submit" value="Place Bid" >
+                    </form>
+                </div>  
+                {%endfor%}
+        </div> 
+    
+    {%else%}
+ 
+    <h2>Log yo ass in</h2>
+
+{%endif%}
+
+{% endblock %}

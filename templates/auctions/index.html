@@ -1,0 +1,57 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+        <h1>Active Listings</h1>
+              
+
+            <div class="listingz">  
+                {% for items in item%}
+                
+                    <div class="listingBox">
+                        <p id="listingName">{{ items.Name }}</p>
+                        {%if items.Image != 'No_Image'%}<img src="{{items.Image}}" width="auto" height="250"></img>
+                        {%else%}<img src="https://qph.cf2.quoracdn.net/main-qimg-1ade612a59f8249fd48849d3b3cdfd98.webp" width="auto" height="250"></img> 
+                        {%endif%}
+                        <p id ="listingDesc">{{ items.Description }}</p>
+                        <p id ="listingCat">Category: {{ items.Categories }}</p>
+                        <p id="listingSeller">Seller: {{items.User}}</p>
+                     <!--  For example, if you have a model Bids with a foreign key to a model Listings, you could use the following in your template:
+                            for bid in listings.bids_set.all  !-->    
+                        
+                            <p id="listingSeller">Bids: {{items.Bids.bidHistory}} </p>
+            
+                        {%if  items.Bids.currentBid == None%}
+                            <p id="listingSeller">Current Bid: Currently 0</p>
+                        {%else%}
+                            <p id="listingSeller">Current Bid: {{items.Bids.currentBid}}</p>
+                        {%endif%}
+                        <form method="POST" action="{% url 'watchlist' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="listing_id" value="{{items.id}}">
+                            <input type="submit" value="Add to Watchlist">
+                        </form>
+                        <form method="POST" action="{% url 'viewListing' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="{{items.id}}">
+                            <input type="hidden" name="viewbid" value="True">
+                            <input type="submit" value="Place Bid">
+                        </form>
+                       <form method="POST" action="{% url 'viewListing' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="{{items.id}}">
+                            <input type="submit"  value="View" >
+                        </form>
+                    </div>  
+                        {% endfor %}
+            </div>
+            
+    
+{% else %}
+    <h2>Log yo ass in</h2>
+
+{%endif%}
+
+{% endblock %}

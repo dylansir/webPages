@@ -1,0 +1,167 @@
+body {
+    padding: 10px;
+    background-color: rgb(252, 252, 252);
+}
+
+header {
+    background-color: #ecf7f2;
+    border-style: groove;
+    border-color:#3a572f;
+    color:rgb(19, 21, 24);
+}
+
+.nav {
+    overflow: hidden;
+    background-color: rgb(252, 252, 252);
+    position: relative;
+}
+
+.nav-item {
+    border-style: groove;
+    border-color:#3a572f;
+    background-color: #092847;
+    border-radius: 5px;
+    color:rgb(231, 222, 222);
+}
+
+.nav-itemLogout {
+    border-style: groove;
+    border-color:#3a572f;
+    background-color: #092847;
+    border-radius: 5px;
+    position: absolute;
+    right: 0px;
+}
+
+
+.nav-itemLogout :hover {
+    background-color: rgb(231, 222, 222);
+    border-radius: 5px;
+}
+
+.nav-item :hover {
+    background-color: rgb(231, 222, 222);
+    border-radius: 5px;
+}
+
+
+.listingSubmit {
+    width: 600px;
+    height: 200px;
+    margin: 30px;
+    padding: 10px;
+    background-color: #d2d3ce;
+    border-radius: 2px;
+    border-style: groove;
+    border-color:#3a572f;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+#id_Image{
+    background-color: burlywood;
+}
+
+
+#labelz {
+    margin: 10px;
+}
+
+#listingName {
+    width:fit-content;
+    border-radius:2px;
+    font-family:Courier, monospace;
+}
+
+
+#listingDesc {
+    background-color: antiquewhite;
+    max-width:240px;
+    margin:2px;
+    height:150px;
+    border-radius: 3px;
+    border-style: groove;
+    border-color:#3a572f;
+    font-family:Courier, monospace;
+}
+
+#listingCat {
+    background-color: antiquewhite;
+    width:auto;
+    margin:2px;
+    height:50px;
+    border-style: groove;
+    border-color:#3a572f;
+    border-radius: 3px;
+    max-width:240px;
+    font-family:Courier, monospace;
+}
+
+#listingSeller {
+    background-color: antiquewhite;
+    max-width:240px;
+    margin:2px;
+    border-style: groove;
+    border-color:#3a572f;
+    height:50px;
+    border-radius: 3px;
+    font-family:Courier, monospace;
+}
+
+.listingz {
+    border:3px;
+    display: grid;
+    overflow:scroll;
+    grid-template-columns: repeat(30, 1fr);
+    gap: 10px;
+    width:auto;
+    height:fit-content;
+    border-radius: 2px;
+}
+
+.listingBox {
+    border:3px;
+    border-style: groove;
+    border-color:#3a572f;
+    width: 300px;
+    height:auto;
+    background-color: #ffffff;
+    padding:20px;
+    float:left;
+    border-radius: 5px;
+}
+
+.listingBox img {
+    max-width:240px;
+    min-width: 240PX;
+    border-radius: 4px;
+    border-style: groove;
+    border-color:#3a572f;
+}
+
+.listingz::-webkit-scrollbar{
+    color:green;
+}
+
+h1 {
+    text-align: center;
+    font-family:Courier, monospace;
+}
+
+.submitListing {
+    color:rgb(51, 47, 47);
+    text-decoration: none;
+}
+
+.submitListing :hover {
+    background-color:rgb(51, 47, 47);
+    color:aliceblue;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.submitListing a :hover{
+    text-decoration: none;
+}

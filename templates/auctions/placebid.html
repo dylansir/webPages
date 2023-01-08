@@ -1,0 +1,36 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+            <div class="listingz">  
+                {% for items in item %}
+                    <div class="listingBox">
+                        <p id="listingName">{{ items.Name }}</p>
+                            {%if items.Image != 'No_Image'%}<img src="{{items.Image}}" width="auto" height="250"></img>
+                            {%else%}<img src="https://qph.cf2.quoracdn.net/main-qimg-1ade612a59f8249fd48849d3b3cdfd98.webp" width="auto" height="250"></img> 
+                            {%endif%}
+                            <p id ="listingDesc">{{ items.Description }}</p>
+                            <p id ="listingCat">Category: {{ items.Categories }}</p>
+                            <p id="listingSeller">Seller: {{items.User}}</p>
+                            <p id="listingSeller">Current Bid: {{items.Bids.currentBid}}</p>
+                            <form method="POST" action="{% url 'bidPlace' %}">
+                                {% csrf_token %}
+                                <input type="number" id="bids" name="Bid" min={{items.Bids.currentBid}} placeholder="10,000">
+                                <input type="hidden" name="listing_id" value="{{items.id}}">
+                                <input type="hidden" name="bid_id" value="{{items.Bids_id}}">
+                                <input type="submit" value="Place Bid">
+                            </form>
+
+                    </div>  
+                        {% endfor %}
+            </div>
+                     
+              
+{% else %}
+    <h2>Log yo ass in</h2>
+
+{%endif%}
+
+{% endblock %}
